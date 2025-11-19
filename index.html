@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nitish-Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <style>
+        /* Set Inter as default font */
+        :root {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        /* Dark Theme & Main Background */
+        body {
+            background-color: #0D1117; /* Dark Background */
+            color: #E5E7EB; /* Light Text */
+            overflow-x: hidden;
+        }
+
+        /* Custom Animated Background (Soft Gradients/Blobs) */
+        .animated-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: -10;
+        }
+
+        .blob {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.5), rgba(59, 130, 246, 0.5)); /* Blue/Purple Gradient */
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.3;
+            animation: moveBlob 20s infinite alternate;
+        }
+
+        .blob-1 { top: 10%; left: 5%; animation-delay: 0s; transform: scale(1.2); }
+        .blob-2 { top: 70%; left: 80%; animation-delay: 5s; transform: scale(0.8); }
+        .blob-3 { top: 40%; left: 45%; animation-delay: 10s; transform: scale(1.5); }
+
+        @keyframes moveBlob {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(100px, 150px) scale(1.2); }
+        }
+
+        /* Scroll Reveal Animation Styles */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .reveal-active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Custom Premium Gradient Button */
+        .gradient-button {
+            background: linear-gradient(90deg, #6366F1, #3B82F6);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+        }
+        .gradient-button:hover {
+            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.6);
+            transform: translateY(-2px);
+        }
+
+        /* Glassmorphism Card Style for Contact */
+        .glass-card {
+            background: rgba(30, 41, 59, 0.4); /* Darker semi-transparent background */
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        /* ADDED ZOOM-IN/OUT CSS HERE */
+        /* This is the key CSS for the smooth zoom effect on hover */
+        .project-image {
+            /* Sets the initial state */
+            transform: scale(1);
+            /* Applies a smooth transition to all transforms over 0.5 seconds */
+            transition: transform 0.5s ease-in-out; 
+            display: block;
+        }
+
+        /* When the mouse hovers over the parent group, the image scales up */
+        .group:hover .project-image {
+            transform: scale(1.05); /* Zoom in by 5% */
+        }
+        /* END ADDED ZOOM-IN/OUT CSS */
+
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="animated-background">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <header class="fixed top-0 left-0 right-0 z-20 bg-[#0D1117] bg-opacity-90 backdrop-blur-sm shadow-lg">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <a href="#hero" class="text-xl font-bold text-[#6366F1] tracking-wider">Nitish.dev</a>
+            <div class="space-x-4 hidden sm:block">
+                <a href="#about" class="hover:text-[#3B82F6] transition">About</a>
+                <a href="#services" class="hover:text-[#3B82F6] transition">Services</a>
+                <a href="#projects" class="hover:text-[#3B82F6] transition">Projects</a>
+                <a href="#contact" class="hover:text-[#3B82F6] transition">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="pt-20">
+
+        <section id="hero" class="min-h-[90vh] flex items-center justify-center pt-16 pb-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12 items-center text-center md:text-left">
+                <div class="space-y-6">
+                    <h1 class="text-5xl sm:text-7xl font-extrabold leading-tight reveal" data-animation="fade-in">
+                        Hi, My Name Is <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#6366F1] to-[#3B82F6]">Nitish</span>
+                    </h1>
+                    <p class="text-xl sm:text-2xl text-gray-400 reveal" data-animation="slide-up">
+                        I build modern, fast, and professional websites.
+                    </p>
+                    <a href="#contact" class="inline-block px-8 py-3 rounded-full text-white font-semibold shadow-lg gradient-button reveal" data-animation="slide-up" data-delay="300">
+                        Start a Project
+                    </a>
+                </div>
+
+                <div class="flex justify-center md:justify-end reveal" data-animation="fade-in" data-delay="600">
+                    <svg class="w-64 h-64 sm:w-80 sm:h-80 rounded-full shadow-2xl bg-[#1F2937] p-8" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="avatarGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#6366F1;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#3B82F6;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <circle cx="50" cy="50" r="45" fill="url(#avatarGradient)" />
+                        <path d="M 30 75 C 35 60, 65 60, 70 75 L 70 80 A 20 20 0 0 1 30 80 Z" fill="#E5E7EB" />
+                        <circle cx="50" cy="40" r="18" fill="#E5E7EB" />
+                        <circle cx="43" cy="40" r="3" fill="#0D1117" />
+                        <circle cx="57" cy="40" r="3" fill="#0D1117" />
+                        <path d="M 45 50 Q 50 55, 55 50" stroke="#0D1117" stroke-width="2" fill="none" />
+                        <path d="M 40 30 C 45 20, 55 20, 60 30" stroke="#E5E7EB" stroke-width="3" fill="none" stroke-linecap="round"/>
+                    </svg>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl font-bold text-center mb-12 reveal text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400">About Me</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="space-y-8 reveal" data-animation="slide-up">
+                    <div class="bg-[#1F2937] p-6 rounded-xl shadow-xl transition duration-300 hover:shadow-2xl hover:scale-[1.02] border border-gray-700">
+                        <div class="flex items-center space-x-4 mb-3">
+                            <i data-lucide="user" class="w-6 h-6 text-[#6366F1]"></i>
+                            <h3 class="text-2xl font-semibold">Who I Am & What I Do</h3>
+                        </div>
+                        <p class="text-gray-400">I am a dedicated frontend developer specializing in creating high-performance, aesthetically pleasing, and highly functional web experiences. My passion lies in bridging the gap between design and development to build products users love.</p>
+                    </div>
+
+                    <div class="bg-[#1F2937] p-6 rounded-xl shadow-xl transition duration-300 hover:shadow-2xl hover:scale-[1.02] border border-gray-700">
+                        <div class="flex items-center space-x-4 mb-3">
+                            <i data-lucide="briefcase" class="w-6 h-6 text-[#3B82F6]"></i>
+                            <h3 class="text-2xl font-semibold">My Experience</h3>
+                        </div>
+                        <p class="text-gray-400">With over 5 years of professional experience, I have successfully delivered projects ranging from complex e-commerce platforms to minimalist landing pages, always focusing on clean architecture and best practices.</p>
+                    </div>
+                </div>
+
+                <div class="space-y-8 reveal" data-animation="slide-up" data-delay="200">
+                    <div class="bg-[#1F2937] p-6 rounded-xl shadow-xl transition duration-300 hover:shadow-2xl hover:scale-[1.02] border border-gray-700">
+                        <div class="flex items-center space-x-4 mb-3">
+                            <i data-lucide="code-square" class="w-6 h-6 text-[#6366F1]"></i>
+                            <h3 class="text-2xl font-semibold">Core Skills</h3>
+                        </div>
+                        <div class="flex flex-wrap gap-2 mt-4">
+                            <span class="px-3 py-1 bg-blue-900/50 rounded-full text-sm font-medium">React</span>
+                            <span class="px-3 py-1 bg-blue-900/50 rounded-full text-sm font-medium">Next.js</span>
+                            <span class="px-3 py-1 bg-blue-900/50 rounded-full text-sm font-medium">Tailwind CSS</span>
+                            <span class="px-3 py-1 bg-blue-900/50 rounded-full text-sm font-medium">JavaScript (ES6+)</span>
+                            <span class="px-3 py-1 bg-blue-900/50 rounded-full text-sm font-medium">Figma/UI/UX</span>
+                            <span class="px-3 py-1 bg-blue-900/50 rounded-full text-sm font-medium">APIs/REST</span>
+                            <span class="px-3 py-1 bg-blue-900/50 rounded-full text-sm font-medium">Git/GitHub</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="services" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl font-bold text-center mb-12 reveal text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400">What I Offer</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="group bg-[#1F2937] p-6 rounded-xl shadow-xl border border-gray-700 reveal" data-animation="slide-up">
+                    <div class="p-3 w-max rounded-full bg-indigo-500/20 mb-4 transition-all group-hover:bg-indigo-500/50">
+                        <i data-lucide="layout-grid" class="w-6 h-6 text-indigo-400"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Website Design</h3>
+                    <p class="text-gray-400">Creating stunning, user-centric visual designs that capture your brand essence.</p>
+                </div>
+
+                <div class="group bg-[#1F2937] p-6 rounded-xl shadow-xl border border-gray-700 reveal" data-animation="slide-up" data-delay="100">
+                    <div class="p-3 w-max rounded-full bg-blue-500/20 mb-4 transition-all group-hover:bg-blue-500/50">
+                        <i data-lucide="cpu" class="w-6 h-6 text-blue-400"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Website Development</h3>
+                    <p class="text-gray-400">Bringing designs to life with modern, scalable, and robust code (React, Next.js).</p>
+                </div>
+
+                <div class="group bg-[#1F2937] p-6 rounded-xl shadow-xl border border-gray-700 reveal" data-animation="slide-up" data-delay="200">
+                    <div class="p-3 w-max rounded-full bg-indigo-500/20 mb-4 transition-all group-hover:bg-indigo-500/50">
+                        <i data-lucide="notebook-text" class="w-6 h-6 text-indigo-400"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Portfolio & Landing Pages</h3>
+                    <p class="text-gray-400">High-converting, focused pages optimized for speed and first impressions.</p>
+                </div>
+
+                <div class="group bg-[#1F2937] p-6 rounded-xl shadow-xl border border-gray-700 reveal" data-animation="slide-up" data-delay="300">
+                    <div class="p-3 w-max rounded-full bg-blue-500/20 mb-4 transition-all group-hover:bg-blue-500/50">
+                        <i data-lucide="eye" class="w-6 h-6 text-blue-400"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">UI/UX Focused Web Design</h3>
+                    <p class="text-gray-400">Designing interfaces that are intuitive, accessible, and delight the user.</p>
+                </div>
+
+                <div class="group bg-[#1F2937] p-6 rounded-xl shadow-xl border border-gray-700 reveal" data-animation="slide-up" data-delay="400">
+                    <div class="p-3 w-max rounded-full bg-indigo-500/20 mb-4 transition-all group-hover:bg-indigo-500/50">
+                        <i data-lucide="zap" class="w-6 h-6 text-indigo-400"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Fast Delivery & Clean Code</h3>
+                    <p class="text-gray-400">Efficient project timelines with code that is well-documented and easy to maintain.</p>
+                </div>
+            </div>
+            <script>
+                document.querySelectorAll('#services > div > div').forEach(card => {
+                    card.classList.add('transition', 'duration-300', 'hover:translate-y-[-5px]', 'hover:shadow-2xl');
+                });
+            </script>
+        </section>
+
+        <section id="why-choose-me" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl font-bold text-center mb-12 reveal text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400">Why Choose Me</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="flex items-start bg-[#1F2937] p-6 rounded-xl shadow-md border border-gray-700 reveal transition duration-300 hover:scale-[1.03]" data-animation="fade-in">
+                    <i data-lucide="check-circle" class="w-6 h-6 text-green-400 mt-1 flex-shrink-0"></i>
+                    <div class="ml-4">
+                        <h3 class="text-lg font-semibold">Modern & Clean Designs</h3>
+                        <p class="text-gray-400">Websites built with the latest design trends and a focus on clarity.</p>
+                    </div>
+                </div>
+
+                <div class="flex items-start bg-[#1F2937] p-6 rounded-xl shadow-md border border-gray-700 reveal transition duration-300 hover:scale-[1.03]" data-animation="fade-in" data-delay="100">
+                    <i data-lucide="check-circle" class="w-6 h-6 text-green-400 mt-1 flex-shrink-0"></i>
+                    <div class="ml-4">
+                        <h3 class="text-lg font-semibold">Fast Delivery</h3>
+                        <p class="text-gray-400">Committed to hitting deadlines without compromising on quality.</p>
+                    </div>
+                </div>
+
+                <div class="flex items-start bg-[#1F2937] p-6 rounded-xl shadow-md border border-gray-700 reveal transition duration-300 hover:scale-[1.03]" data-animation="fade-in" data-delay="200">
+                    <i data-lucide="check-circle" class="w-6 h-6 text-green-400 mt-1 flex-shrink-0"></i>
+                    <div class="ml-4">
+                        <h3 class="text-lg font-semibold">Fully Responsive Websites</h3>
+                        <p class="text-gray-400">Flawless display on every device, from mobile to desktop.</p>
+                    </div>
+                </div>
+
+                <div class="flex items-start bg-[#1F2937] p-6 rounded-xl shadow-md border border-gray-700 reveal transition duration-300 hover:scale-[1.03]" data-animation="fade-in" data-delay="300">
+                    <i data-lucide="check-circle" class="w-6 h-6 text-green-400 mt-1 flex-shrink-0"></i>
+                    <div class="ml-4">
+                        <h3 class="text-lg font-semibold">Friendly Communication</h3>
+                        <p class="text-gray-400">Clear, continuous, and hassle-free collaboration throughout the project.</p>
+                    </div>
+                </div>
+
+                <div class="flex items-start bg-[#1F2937] p-6 rounded-xl shadow-md border border-gray-700 reveal transition duration-300 hover:scale-[1.03]" data-animation="fade-in" data-delay="400">
+                    <i data-lucide="check-circle" class="w-6 h-6 text-green-400 mt-1 flex-shrink-0"></i>
+                    <div class="ml-4">
+                        <h3 class="text-lg font-semibold">Affordable Pricing</h3>
+                        <p class="text-gray-400">Premium quality and performance without the premium price tag.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl font-bold text-center mb-12 reveal text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400">Selected Projects</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-[#1F2937] rounded-xl overflow-hidden shadow-2xl border border-gray-700 reveal group transition duration-300 hover:shadow-indigo-500/20 hover:scale-[1.02]" data-animation="slide-up">
+                    <img src="hotel_website_pic.png"
+                        alt="Online Restaurant Website Placeholder"
+                        class="w-full h-48 object-cover transition duration-500 group-hover:opacity-80 **project-image**"> <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Online Restaurant Website</h3>
+                        <p class="text-gray-400 text-sm">A sophisticated online presence for a high-end restaurant, featuring dynamic menus and reservation systems.</p>
+                    </div>
+                </div>
+
+                <div class="bg-[#1F2937] rounded-xl overflow-hidden shadow-2xl border border-gray-700 reveal group transition duration-300 hover:shadow-indigo-500/20 hover:scale-[1.02]" data-animation="slide-up" data-delay="100">
+                    <img src="portfolio_pic.png"
+                        alt="Modern Portfolio Website Placeholder"
+                        class="w-full h-48 object-cover transition duration-500 group-hover:opacity-80 **project-image**"> <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Modern Portfolio Website</h3>
+                        <p class="text-gray-400 text-sm">An elegant, single-page portfolio designed for creatives and freelancers with high animation usage.</p>
+                    </div>
+                </div>
+
+                <div class="bg-[#1F2937] rounded-xl overflow-hidden shadow-2xl border border-gray-700 reveal group transition duration-300 hover:shadow-indigo-500/20 hover:scale-[1.02]" data-animation="slide-up" data-delay="200">
+                    <img src="E-commerce_website_pic.png"
+                        alt="E-commerce UI Mockup Placeholder"
+                        class="w-full h-48 object-cover transition duration-500 group-hover:opacity-80 **project-image**"> <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">E-commerce UI Mockup</h3>
+                        <p class="text-gray-400 text-sm">A clean, conversion-focused user interface design for a scalable online store.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="py-20 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl font-bold text-center mb-12 reveal text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400">Get In Touch</h2>
+
+            <div class="glass-card p-8 sm:p-12 rounded-2xl reveal" data-animation="fade-in">
+                <p class="text-gray-300 mb-8 text-center text-lg">Have a project idea? Let's discuss how I can bring it to life.</p>
+
+                <form class="space-y-6">
+                    <div>
+                        <label for="name" class="sr-only">Name</label>
+                        <input type="text" id="name" placeholder="Your Name"
+                               class="w-full p-4 rounded-xl bg-gray-900/50 border border-gray-700 focus:ring-2 focus:ring-[#6366F1] focus:border-[#6366F1] placeholder-gray-500 text-white" required>
+                    </div>
+                    <div>
+                        <label for="email" class="sr-only">Email</label>
+                        <input type="email" id="email" placeholder="Your Email"
+                               class="w-full p-4 rounded-xl bg-gray-900/50 border border-gray-700 focus:ring-2 focus:ring-[#6366F1] focus:border-[#6366F1] placeholder-gray-500 text-white" required>
+                    </div>
+                    <div>
+                        <label for="message" class="sr-only">Message</label>
+                        <textarea id="message" rows="4" placeholder="Your Message"
+                                 class="w-full p-4 rounded-xl bg-gray-900/50 border border-gray-700 focus:ring-2 focus:ring-[#6366F1] focus:border-[#6366F1] placeholder-gray-500 text-white" required></textarea>
+                    </div>
+
+                    <button type="submit" class="w-full py-4 rounded-xl text-white font-bold text-lg gradient-button transition duration-300 relative overflow-hidden">
+                        Send Message
+                    </button>
+                    <style>
+                        .gradient-button:hover::after {
+                            content: "";
+                            position: absolute;
+                            top: -10px;
+                            left: -10px;
+                            right: -10px;
+                            bottom: -10px;
+                            background: radial-gradient(circle, rgba(99, 102, 241, 0.4) 0%, transparent 70%);
+                            z-index: -1;
+                            opacity: 1;
+                            transition: opacity 0.5s ease;
+                        }
+                    </style>
+                </form>
+
+                <div class="mt-8 pt-6 border-t border-gray-700 flex justify-center">
+                    <a href="mailto:nitish@example.com" class="flex items-center text-gray-300 hover:text-[#3B82F6] transition">
+                        <i data-lucide="mail" class="w-5 h-5 mr-2"></i>
+                        nitish@example.com
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="py-8 border-t border-gray-800 text-center text-gray-500 text-sm">
+        <p>&copy; 2025 Nitish. All rights reserved. | Built with modern web standards.</p>
+    </footer>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // 1. Smooth Scroll & Intersection Observer for Scroll-Reveal Animations
+        document.addEventListener('DOMContentLoaded', () => {
+            const reveals = document.querySelectorAll('.reveal');
+
+            const observerOptions = {
+                root: null, // relative to the viewport
+                rootMargin: '0px',
+                threshold: 0.2 // Trigger when 20% of the item is visible
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const element = entry.target;
+                        const delay = element.getAttribute('data-delay') || 0;
+
+                        setTimeout(() => {
+                            element.classList.add('reveal-active');
+                        }, parseInt(delay));
+
+                        // Stop observing once the element is visible
+                        observer.unobserve(element);
+                    }
+                });
+            }, observerOptions);
+
+            reveals.forEach(el => observer.observe(el));
+        });
+    </script>
+</body>
+</html>
