@@ -335,7 +335,8 @@
             <div class="glass-card p-8 sm:p-12 rounded-2xl reveal" data-animation="fade-in">
                 <p class="text-gray-300 mb-8 text-center text-lg">Have a project idea? Let's discuss how I can bring it to life.</p>
 
-                <form class="space-y-6">
+                <form action="https://api.web3forms.com/submit" method="POST" class="space-y-6">
+                    <input type="hidden" name="access_key" value="74c54540-d370-4fee-933a-2688ff6e7675">
                     <div>
                         <label for="name" class="sr-only">Name</label>
                         <input type="text" id="name" placeholder="Your Name"
@@ -419,4 +420,5 @@
         });
     </script>
 </body>
+
 </html>
